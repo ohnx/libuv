@@ -117,9 +117,10 @@ void uv_loadavg(double avg[3]) {
   avg[0] = avg[1] = avg[2] = 0;
 }
 
-int uv_resident_set_memory(size_t* rss) {
+int uv_resident_set_memory(size_t *rss) {
   area_info areaInfo;
-  int32 cookie = 0;
+  /* TODO: is get_next_area_info(team_id, ssize_t*, area_info*, size_t) ssize_t only on 64-bit? */
+  ssize_t cookie = 0;
   team_info teamInfo;
   thread_info threadInfo;
 	

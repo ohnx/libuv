@@ -243,7 +243,7 @@
 # define UV__ENOENT (-4058)
 #endif
 
-#if defined(ENOMEM) && !defined(_WIN32) && !defined(__HAIKU__)
+#if defined(ENOMEM) && !defined(_WIN32)
 # define UV__ENOMEM (-ENOMEM)
 #else
 # define UV__ENOMEM (-4057)
