@@ -1212,7 +1212,7 @@ int uv__getpwuid_r(uv_passwd_t* pwd) {
     buf = uv__malloc(bufsize);
 
     if (buf == NULL)
-      return -ENOMEM;
+      return UV__ENOMEM;
 
     r = getpwuid_r(uid, &pw, buf, bufsize, &result);
 
@@ -1240,7 +1240,7 @@ int uv__getpwuid_r(uv_passwd_t* pwd) {
 
   if (pwd->username == NULL) {
     uv__free(buf);
-    return -ENOMEM;
+    return UV__ENOMEM;
   }
 
   /* Copy the username */

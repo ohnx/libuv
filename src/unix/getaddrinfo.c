@@ -156,7 +156,7 @@ int uv_getaddrinfo(uv_loop_t* loop,
   buf = uv__malloc(hostname_len + service_len + hints_len);
 
   if (buf == NULL)
-    return -ENOMEM;
+    return UV__ENOMEM;
 
   uv__req_init(loop, req, UV_GETADDRINFO);
   req->loop = loop;

@@ -321,7 +321,7 @@ int uv__stream_try_select(uv_stream_t* stream, int* fd) {
 
   s = uv__malloc(sizeof(*s) + sread_sz + swrite_sz);
   if (s == NULL) {
-    err = -ENOMEM;
+    err = UV__ENOMEM;
     goto failed_malloc;
   }
 
@@ -1029,7 +1029,7 @@ static int uv__stream_queue_fd(uv_stream_t* stream, int fd) {
     queued_fds = uv__malloc((queue_size - 1) * sizeof(*queued_fds->fds) +
                             sizeof(*queued_fds));
     if (queued_fds == NULL)
-      return -ENOMEM;
+      return UV__ENOMEM;
     queued_fds->size = queue_size;
     queued_fds->offset = 0;
     stream->queued_fds = queued_fds;
@@ -1046,7 +1046,7 @@ static int uv__stream_queue_fd(uv_stream_t* stream, int fd) {
      * NOTE: if it is fatal - sockets will be closed in uv__stream_close
      */
     if (queued_fds == NULL)
-      return -ENOMEM;
+      return UV__ENOMEM;
     queued_fds->size = queue_size;
     stream->queued_fds = queued_fds;
   }
@@ -1452,7 +1452,7 @@ int uv_write2(uv_write_t* req,
     req->bufs = uv__malloc(nbufs * sizeof(bufs[0]));
 
   if (req->bufs == NULL)
-    return -ENOMEM;
+    return UV__ENOMEM;
 
   memcpy(req->bufs, bufs, nbufs * sizeof(bufs[0]));
   req->nbufs = nbufs;

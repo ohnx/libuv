@@ -90,7 +90,7 @@
       req->path = uv__strdup(path);                                           \
       if (req->path == NULL) {                                                \
         uv__req_unregister(loop, req);                                        \
-        return -ENOMEM;                                                       \
+        return UV__ENOMEM;                                                       \
       }                                                                       \
     }                                                                         \
   }                                                                           \
@@ -109,7 +109,7 @@
       req->path = uv__malloc(path_len + new_path_len);                        \
       if (req->path == NULL) {                                                \
         uv__req_unregister(loop, req);                                        \
-        return -ENOMEM;                                                       \
+        return UV__ENOMEM;                                                       \
       }                                                                       \
       req->new_path = req->path + path_len;                                   \
       memcpy((void*) req->path, path, path_len);                              \
@@ -1291,7 +1291,7 @@ int uv_fs_mkdtemp(uv_loop_t* loop,
   if (req->path == NULL) {
     if (cb != NULL)
       uv__req_unregister(loop, req);
-    return -ENOMEM;
+    return UV__ENOMEM;
   }
   POST;
 }
@@ -1332,7 +1332,7 @@ int uv_fs_read(uv_loop_t* loop, uv_fs_t* req,
   if (req->bufs == NULL) {
     if (cb != NULL)
       uv__req_unregister(loop, req);
-    return -ENOMEM;
+    return UV__ENOMEM;
   }
 
   memcpy(req->bufs, bufs, nbufs * sizeof(*bufs));
@@ -1471,7 +1471,7 @@ int uv_fs_write(uv_loop_t* loop,
   if (req->bufs == NULL) {
     if (cb != NULL)
       uv__req_unregister(loop, req);
-    return -ENOMEM;
+    return UV__ENOMEM;
   }
 
   memcpy(req->bufs, bufs, nbufs * sizeof(*bufs));

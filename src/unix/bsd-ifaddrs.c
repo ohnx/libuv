@@ -92,7 +92,7 @@ int uv_interface_addresses(uv_interface_address_t** addresses, int* count) {
 
   if (*addresses == NULL) {
     freeifaddrs(addrs);
-    return -ENOMEM;
+    return UV__ENOMEM;
   }
 
   address = *addresses;

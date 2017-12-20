@@ -418,7 +418,7 @@ int uv__udp_send(uv_udp_send_t* req,
 
   if (req->bufs == NULL) {
     uv__req_unregister(handle->loop, req);
-    return -ENOMEM;
+    return UV__ENOMEM;
   }
 
   memcpy(req->bufs, bufs, nbufs * sizeof(bufs[0]));
