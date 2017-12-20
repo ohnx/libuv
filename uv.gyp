@@ -170,7 +170,7 @@
           'link_settings': {
             'libraries': [ '-lm' ],
             'conditions': [
-              ['OS=="solaris"', {
+              ['OS=="solaris" and OS != "haiku"', {
                 'ldflags': [ '-pthreads' ],
               }],
               [ 'OS=="zos" and uv_library=="shared_library"', {
@@ -342,6 +342,19 @@
             'src/unix/pthread-fixes.c',
             'src/unix/os390.c',
             'src/unix/os390-syscalls.c'
+          ]
+        }],
+        ['OS=="haiku"', {
+          'sources': [
+            'src/unix/bsd-ifaddrs.c',
+            'src/unix/haiku.cpp',
+            'src/unix/no-fsevents.c',
+            'src/unix/no-proctitle.c',
+            'src/unix/posix-hrtime.c',
+            'src/unix/posix-poll.c'
+          ],
+          'defines': [
+            '_BSD_SOURCE',
           ]
         }],
       ]

@@ -388,6 +388,16 @@ libuv_la_SOURCES += src/unix/bsd-ifaddrs.c \
 test_run_tests_LDFLAGS += -lutil
 endif
 
+if HAIKU
+libuv_la_CFLAGS += -D_BSD_SOURCE
+libuv_la_SOURCES += src/unix/bsd-ifaddrs.c \
+                    src/unix/haiku.cpp \
+                    src/unix/no-fsevents.c \
+                    src/unix/no-proctitle.c \
+                    src/unix/posix-hrtime.c \
+                    src/unix/posix-poll.c
+endif
+
 if LINUX
 include_HEADERS += include/uv-linux.h
 libuv_la_CFLAGS += -D_GNU_SOURCE
